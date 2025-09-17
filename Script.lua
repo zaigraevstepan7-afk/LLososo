@@ -1,4 +1,4 @@
--- Premium Roblox Menu by Colin
+-- Premium Roblox Menu with Screen Toggle Button by Colin
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
@@ -8,8 +8,7 @@ local UserInputService = game:GetService("UserInputService")
 -- Настройки
 local Settings = {
     Menu = {
-        Visible = false,
-        Key = Enum.KeyCode.RightShift
+        Visible = false
     },
     SilentAim = {
         Enabled = false,
@@ -28,7 +27,19 @@ local Settings = {
     }
 }
 
--- Создание GUI
+-- Создание кнопки переключения
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Size = UDim2.new(0, 50, 0, 50)
+ToggleButton.Position = UDim2.new(0, 20, 0, 20)
+ToggleButton.BackgroundColor3 = Color3.fromRGB(0, 100, 255)
+ToggleButton.TextColor3 = Color3.new(1, 1, 1)
+ToggleButton.Text = "📋"
+ToggleButton.Font = Enum.Font.SourceSansBold
+ToggleButton.TextSize = 20
+ToggleButton.ZIndex = 10
+ToggleButton.Parent = game:GetService("CoreGui")
+
+-- Создание GUI меню
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "PremiumMenu"
 ScreenGui.Parent = game:GetService("CoreGui")
@@ -109,9 +120,20 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
+-- Функция переключения меню
+local function ToggleMenu()
+    Settings.Menu.Visible = not Settings.Menu.Visible
+    MainFrame.Visible = Settings.Menu.Visible
+    Glow.ImageColor3 = Settings.Menu.Visible and Color3.fromRGB(0, 150, 255) or Color3.fromRGB(0, 100, 255)
+    ToggleButton.Text = Settings.Menu.Visible and "❌" or "📋"
+end
+
 CloseButton.MouseButton1Click:Connect(function()
-    Settings.Menu.Visible = false
-    MainFrame.Visible = false
+    ToggleMenu()
+end)
+
+ToggleButton.MouseButton1Click:Connect(function()
+    ToggleMenu()
 end)
 
 -- Функции меню
@@ -270,35 +292,6 @@ local function UpdateESP()
                     box.Parent = head
                     table.insert(ESPObjects, box)
                 end
-                
-                -- ESP Name
-                if Settings.ESP.Names then
-                    local billboard = Instance.new("BillboardGui")
-                    billboard.Size = UDim2.new(0, 100, 0, 40)
-                    billboard.Adornee = head
-                    billboard.AlwaysOnTop = true
-                    billboard.ExtentsOffset = Vector3.new(0, 3, 0)
-                    
-                    local nameLabel = Instance.new("TextLabel")
-                    nameLabel.Text = player.Name
-                    nameLabel.Size = UDim2.new(1, 0, 0.5, 0)
-                    nameLabel.TextColor3 = Color3.new(1, 1, 1)
-                    nameLabel.BackgroundTransparency = 1
-                    nameLabel.Parent = billboard
-                    
-                    if Settings.ESP.Distance then
-                        local distanceLabel = Instance.new("TextLabel")
-                        distanceLabel.Text = math.floor((LocalPlayer.Character.Head.Position - head.Position).Magnitude) .. " studs"
-                        distanceLabel.Size = UDim2.new(1, 0, 0.5, 0)
-                        distanceLabel.Position = UDim2.new(0, 0, 0.5, 0)
-                        distanceLabel.TextColor3 = Color3.new(1, 1, 1)
-                        distanceLabel.BackgroundTransparency = 1
-                        distanceLabel.Parent = billboard
-                    end
-                    
-                    billboard.Parent = head
-                    table.insert(ESPObjects, billboard)
-                end
             end
         end
     end
@@ -328,13 +321,4 @@ RunService.RenderStepped:Connect(function()
     UpdateESP()
 end)
 
--- Переключение меню
-UserInputService.InputBegan:Connect(function(input)
-    if input.KeyCode == Settings.Menu.Key then
-        Settings.Menu.Visible = not Settings.Menu.Visible
-        MainFrame.Visible = Settings.Menu.Visible
-        Glow.ImageColor3 = Settings.Menu.Visible and Color3.fromRGB(0, 150, 255) or Color3.fromRGB(0, 100, 255)
-    end
-end)
-
-print("Premium Menu loaded! Press RightShift to open/close")
+print("Premium Menu loaded! Click the blue button to open/close")
