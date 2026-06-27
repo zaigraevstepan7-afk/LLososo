@@ -153,8 +153,8 @@ wl_pool   = [c for c in all_cfgs if "yandex" in c["sni"].lower()]            # w
 norm_pool = [c for c in all_cfgs if not c["wl"]]                             # ordinary, non-whitelist SNI
 
 WL   = pick(wl_pool, 100, prefer_yandex=True)
-NORM = pick(norm_pool, len(norm_pool))                                       # ALL ordinary servers (huge)
-COMB = pick(WL, 50, prefer_yandex=True) + pick(NORM, 50)                     # 50 + 50 = both
+NORM = pick(norm_pool, 100)                                                  # 100 ordinary servers
+ALL  = WL + NORM                                                             # all-in-one: white + normal (200)
 
 # ---- builders ----
 RU_DIRECT = ["domain:ru","domain:xn--p1ai","geosite:category-ru","domain:yandex","domain:vk.com",
@@ -216,9 +216,9 @@ def build_sub(cfgs, title, path):
         base64.b64encode(("\n".join(lines)+"\n").encode()).decode()+"\n")
 
 for cfgs, remarks, jpath, tpath in [
-    (WL,   "ROOT VPN | Белые списки", "root-vpn.json",          "root-vpn.txt"),
-    (NORM, "ROOT VPN | Обычные",      "root-vpn-normal.json",   "root-vpn-normal.txt"),
-    (COMB, "ROOT VPN | Всё вместе",   "root-vpn-combined.json", "root-vpn-combined.txt"),
+    (WL,   "ROOT VPN | Белые списки",        "root-vpn.json",        "root-vpn.txt"),
+    (NORM, "ROOT VPN | Обычные",             "root-vpn-normal.json", "root-vpn-normal.txt"),
+    (ALL,  "ROOT VPN | Всё (Белые+Обычные)", "root-vpn-all.json",    "root-vpn-all.txt"),
 ]:
     n = build_json(cfgs, remarks, jpath)
     build_sub(cfgs, remarks, tpath)
