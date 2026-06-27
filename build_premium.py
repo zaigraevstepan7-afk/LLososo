@@ -97,6 +97,6 @@ print(f"TLS-handshake PASSED: {len(ok)}/{len(usca)} ", dict(Counter(c['cc'] for 
 
 def take(cc,n):
     return sorted([c for c in ok if c["cc"]==cc], key=lambda e:e["rtt"])[:n]
-PREM = take("US",20) + take("CA",20)
+PREM = take("US",60) + take("CA",60)
 print("PREMIUM verified:", dict(Counter(c['cc'] for c in PREM)), "| total", len(PREM))
 json.dump({"prem":PREM},open("/tmp/prem.json","w"))
