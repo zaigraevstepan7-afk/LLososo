@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Build ROOT VPN configs: White-list (yandex), Normal (ordinary), Combined (both).
+Each = stable auto-balancer Xray JSON (pick best on connect, freeze) + subscription txt."""
+import re, base64, glob, json, urllib.parse as up
+from collections import Counter, defaultdict
+
+def norm(t):
+    if "://" in t: return t
+    c = re.sub(r"\s+", "", t)
+    try:
+        d = base64.b64decode(c + "=" * (-len(c) % 4)).decode("utf-8", "ignore")
+        return d if "://" in d else t
+    except Exception:
+        return t
+
+URI = re.compile(r"vless://[^\s'\"<>]+")
+def f2cc(fr):
+    r = [ord(c) - 0x1F1E6 for c in fr if 0x1F1E6 <= ord(c) <= 0x1F1FF]
+    return (chr(65+r[0])+chr(65+r[1])) if len(r) >= 2 else None
+CC = {"DE":"Germany","NL":"Netherlands","FR":"France","FI":"Finland","SE":"Sweden","US":"United States",
+ "GB":"United Kingdom","CA":"Canada","CH":"Switzerland","LV":"Latvia","PL":"Poland","PH":"Philippines",
+ "AT":"Austria","ES":"Spain","KZ":"Kazakhstan","RS":"Serbia","JP":"Japan","SG":"Singapore","KR":"South Korea",
+ "IN":"India","TR":"Turkey","HK":"Hong Kong","RO":"Romania","IT":"Italy","CZ":"Czechia","HU":"Hungary",
+ "EE":"Estonia","LT":"Lithuania","BG":"Bulgaria","AE":"UAE","IL":"Israel","NO":"Norway","DK":"Denmark",
+ "IE":"Ireland","UA":"Ukraine","MD":"Moldova","SC":"Seychelles","AM":"Armenia","CY":"Cyprus","AU":"Australia"}
+SKIP = {"RU","EU","AQ","UN"}
+def flag(cc): return "".join(chr(0x1F1E6+ord(c)-65) for c in cc) if cc else "🌐"
+
+WL_HINTS = ("yandex","ozon","vk.com","vk.ru","id.vk","mail.ru","kinopoisk","avito","pervye.ru",
+ "genproc.gov.ru","gosuslugi","sberbank","sber.ru","x5.ru","rbc.ru","gismeteo","2gis","rutube",
+ "tinkoff","tbank","wildberries","mos.ru","max.ru","kontur","ngenix.net")
+def is_wl(sni):
+    s = sni.lower()
+    return "yandex" in s or s.endswith(".ru") or any(h in s for h in WL_HINTS)
+
+def parse(u):
+    rest = u.split("://",1)[1]; frag=""
+    if "#" in rest: rest, frag = rest.split("#",1); frag = up.unquote(frag)
+    uid, _, host = rest.split("?",1)[0].partition("@")
+    q = rest.split("?",1)[1] if "?" in rest else ""
+    return uid, host, dict(up.parse_qsl(q)), frag
+
+# ---- collect all reality servers (tcp/grpc), non-RU ----
+all_cfgs, seen = [], set()
+for f in glob.glob("srcs/*.raw"):
+    for m in URI.findall(norm(open(f, encoding="utf-8", errors="ignore").read())):
+        u = m.strip().rstrip(",").replace("&amp;", "&")
+        try: uid, host, par, frag = parse(u)
+        except Exception: continue
+        if ":" not in host or len(uid) < 8: continue
+        if par.get("security") != "reality": continue
+        net = par.get("type") or "tcp"
+        if net not in ("tcp","grpc"): continue
+        sni = par.get("sni") or par.get("serverName","")
+        pbk = par.get("pbk","")
+        if not sni or not pbk: continue
+        cc = f2cc(frag)
+        if cc in SKIP: continue
+        addr, _, port = host.rpartition(":")
+        if not port.isdigit(): continue
+        key = (addr, port, pbk)
+        if key in seen: continue
+        seen.add(key)
+        all_cfgs.append({"uri":u,"uid":uid,"addr":addr,"port":int(port),"net":net,"sni":sni,"cc":cc,
+                         "flow":par.get("flow",""),"pbk":pbk,"sid":par.get("sid",""),
+                         "fp":par.get("fp","chrome"),"sname":par.get("serviceName",""),"wl":is_wl(sni)})
+
+print(f"Total reality servers (non-RU, tcp/grpc): {len(all_cfgs)}")
+print(f"  white-list SNI: {sum(c['wl'] for c in all_cfgs)} | ordinary SNI: {sum(not c['wl'] for c in all_cfgs)}")
+
+def pick(cands, n, prefer_yandex=False):
+    """Country-diverse selection up to n, best first."""
+    def sc(e):
+        s = 0
+        if prefer_yandex and "yandex" in e["sni"].lower(): s += 10
+        if e["flow"].startswith("xtls-rprx-vision"): s += 3
+        if e["cc"]: s += 2
+        if e["net"] == "tcp": s += 1
+        return s
+    cands = sorted(cands, key=lambda e: -sc(e))
+    by = defaultdict(list)
+    for e in cands: by[e["cc"] or "??"].append(e)
+    order = sorted(by, key=lambda c: -sc(by[c][0]))
+    out = []
+    # round-robin across countries for spread
+    while len(out) < n and any(by.values()):
+        moved = False
+        for c in order:
+            if by[c]:
+                out.append(by[c].pop(0)); moved = True
+                if len(out) >= n: break
+        if not moved: break
+    return out[:n]
+
+wl_pool   = [c for c in all_cfgs if "yandex" in c["sni"].lower()]            # white-list = yandex (proven)
+norm_pool = [c for c in all_cfgs if not c["wl"]]                             # ordinary, non-whitelist SNI
+
+WL   = pick(wl_pool, 100, prefer_yandex=True)
+NORM = pick(norm_pool, 100)
+COMB = pick(WL, 50, prefer_yandex=True) + pick(NORM, 50)                     # 50 + 50 = both
+
+# ---- builders ----
+RU_DIRECT = ["domain:ru","domain:xn--p1ai","geosite:category-ru","domain:yandex","domain:vk.com",
+ "domain:userapi.com","domain:mail.ru","domain:ozon.ru","domain:wildberries.ru","domain:avito.ru",
+ "domain:kinopoisk.ru","domain:gosuslugi.ru","domain:sberbank.ru","domain:tinkoff.ru","domain:2gis.com",
+ "domain:rutube.ru","domain:max.ru","domain:yastatic.net","domain:yandexcloud.net","domain:mos.ru"]
+
+def outbound(e, i):
+    ss = {"network": e["net"], "security": "reality",
+          "realitySettings": {"allowInsecure": False, "fingerprint": e["fp"] or "chrome",
+              "publicKey": e["pbk"], "serverName": e["sni"], "shortId": e["sid"], "show": False},
+          "sockopt": {"tcpKeepAliveInterval":15,"tcpKeepAliveIdle":30,"tcpMptcp":False}}
+    if e["net"] == "grpc":
+        ss["grpcSettings"] = {"serviceName": e["sname"], "multiMode": False}
+    else:
+        ss["tcpSettings"] = {"header": {"type": "none"}}
+    return {"mux": {"enabled": False, "concurrency": -1}, "protocol": "vless",
+        "settings": {"vnext": [{"address": e["addr"], "port": e["port"],
+            "users": [{"encryption":"none","flow":e["flow"],"id":e["uid"],"level":8}]}]},
+        "streamSettings": ss, "tag": f"proxy-{i+1}"}
+
+def build_json(cfgs, remarks, path):
+    proxies = [outbound(e,i) for i,e in enumerate(cfgs)]
+    cfg = {
+        "dns": {"servers": ["https://8.8.8.8/dns-query","https://8.8.4.4/dns-query"], "queryStrategy":"UseIP"},
+        "inbounds": [
+            {"listen":"127.0.0.1","port":10808,"protocol":"socks",
+             "settings":{"auth":"noauth","udp":True,"userLevel":8},
+             "sniffing":{"destOverride":["http","tls"],"enabled":True,"routeOnly":False},"tag":"socks"},
+            {"listen":"127.0.0.1","port":10809,"protocol":"http","settings":{"userLevel":8},"tag":"http"}],
+        "log": {"loglevel":"warning"},
+        "outbounds": proxies + [
+            {"protocol":"freedom","settings":{"domainStrategy":"UseIP"},"tag":"direct"},
+            {"protocol":"blackhole","settings":{"response":{"type":"http"}},"tag":"block"}],
+        "remarks": remarks,
+        "routing": {"domainStrategy":"IPIfNonMatch","domainMatcher":"hybrid",
+            "rules":[{"type":"field","protocol":["bittorrent"],"outboundTag":"direct"},
+                {"type":"field","outboundTag":"direct","domain":RU_DIRECT},
+                {"type":"field","network":"tcp,udp","balancerTag":"auto"}],
+            "balancers":[{"tag":"auto","selector":["proxy-"],"strategy":{"type":"leastPing"},"fallbackTag":"proxy-1"}]},
+        # stable: probe once on connect, freeze; re-pick only on reconnect
+        "observatory": {"subjectSelector":["proxy-"],"probeURL":"https://www.gstatic.com/generate_204",
+            "probeInterval":"9000h","enableConcurrency":True},
+    }
+    json.dump(cfg, open(path,"w"), ensure_ascii=False, indent=2)
+    return len(proxies)
+
+def build_sub(cfgs, title, path):
+    cnt = Counter(); lines = []
+    for e in cfgs:
+        cnt[e['cc']] += 1
+        name = CC.get(e['cc'], e['cc'] or "Anycast")
+        tag = "⚪БС" if e["wl"] else "•"
+        lines.append(e["uri"].split("#",1)[0] + "#" + up.quote(f"{flag(e['cc'])} {name} {tag}-{cnt[e['cc']]}"))
+    hdr = [f"# profile-title: {title}","# profile-update-interval: 12",f"# Count: {len(lines)}",
+           "# Stable: pick fastest on connect, hold whole session.",""]
+    open(path,"w").write("\n".join(hdr)+"\n".join(lines)+"\n")
+    open(path.replace(".txt","-base64.txt"),"w").write(
+        base64.b64encode(("\n".join(lines)+"\n").encode()).decode()+"\n")
+
+for cfgs, remarks, jpath, tpath in [
+    (WL,   "ROOT VPN | Белые списки", "root-vpn.json",          "root-vpn.txt"),
+    (NORM, "ROOT VPN | Обычные",      "root-vpn-normal.json",   "root-vpn-normal.txt"),
+    (COMB, "ROOT VPN | Всё вместе",   "root-vpn-combined.json", "root-vpn-combined.txt"),
+]:
+    n = build_json(cfgs, remarks, jpath)
+    build_sub(cfgs, remarks, tpath)
+    print(f"{remarks:28s} -> {jpath} ({n} servers) | countries: {len(set(e['cc'] for e in cfgs))}"
+          f" | wl={sum(e['wl'] for e in cfgs)} normal={sum(not e['wl'] for e in cfgs)}")
