@@ -53,6 +53,10 @@ def clean_sid(sid):
     return h
 def valid(uid, pbk, sni):
     return RE_UUID.match(uid or "") and RE_PBK.match(pbk or "") and RE_DOM.match(sni or "")
+def clean_flow(fl):
+    if fl == "xtls-rprx-vision" or not fl: return fl   # only flow Xray accepts
+    return "xtls-rprx-vision" if "vision" in fl else ""  # fix typos, clear unknown
+VALID_FP = {"chrome","firefox","safari","ios","android","edge","360","qq","random","randomized"}
 
 # ---- collect all reality servers (tcp/grpc), non-RU ----
 all_cfgs, seen = [], set()
@@ -76,9 +80,10 @@ for f in glob.glob("srcs/*.raw"):
         key = (addr, port, pbk)
         if key in seen: continue
         seen.add(key)
+        fp = par.get("fp","chrome"); fp = fp if fp in VALID_FP else "chrome"
         all_cfgs.append({"uri":u,"uid":uid,"addr":addr,"port":int(port),"net":net,"sni":sni,"cc":cc,
-                         "flow":par.get("flow",""),"pbk":pbk,"sid":clean_sid(par.get("sid","")),
-                         "fp":par.get("fp","chrome"),"sname":par.get("serviceName",""),"wl":is_wl(sni)})
+                         "flow":clean_flow(par.get("flow","")),"pbk":pbk,"sid":clean_sid(par.get("sid","")),
+                         "fp":fp,"sname":par.get("serviceName",""),"wl":is_wl(sni)})
 
 print(f"Total reality servers (flag-filtered): {len(all_cfgs)}")
 

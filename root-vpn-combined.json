@@ -3870,7 +3870,7 @@
             "users": [
               {
                 "encryption": "none",
-                "flow": "xtxts-rprx-vision",
+                "flow": "xtls-rprx-vision",
                 "id": "5c417415-5c79-4447-a8bd-fd9f73a89fb9",
                 "level": 8
               }
@@ -4008,7 +4008,7 @@
             "users": [
               {
                 "encryption": "none",
-                "flow": "xtxts-rprx-vision",
+                "flow": "xtls-rprx-vision",
                 "id": "f82944fe-9863-494a-9a2d-0f3120a774c6",
                 "level": 8
               }
@@ -4560,7 +4560,7 @@
             "users": [
               {
                 "encryption": "none",
-                "flow": "xtxts-rprx-vision",
+                "flow": "xtls-rprx-vision",
                 "id": "5c417415-5c79-4447-a8bd-fd9f73a89fb9",
                 "level": 8
               }
