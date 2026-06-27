@@ -123,6 +123,28 @@ for c in all_cfgs:
     kept.append(c)
 all_cfgs = kept
 print(f"GeoIP: dropped {dropped_ru} RU-located servers | remaining: {len(all_cfgs)}")
+
+# ---- LIVENESS: TCP-connect test every server, keep only reachable, record latency ----
+from concurrent.futures import ThreadPoolExecutor
+def probe(c):
+    ip = ip_of.get(c["addr"])
+    if not ip: return None
+    s = socket.socket(); s.settimeout(2.5)
+    t0 = time.monotonic()
+    try:
+        s.connect((ip, c["port"])); return (time.monotonic() - t0) * 1000
+    except Exception:
+        return None
+    finally:
+        s.close()
+with ThreadPoolExecutor(max_workers=200) as ex:
+    rtts = list(ex.map(probe, all_cfgs))
+for c, rtt in zip(all_cfgs, rtts):
+    c["rtt"] = rtt                         # ms if reachable, None if not (kept either way)
+alive = sum(1 for c in all_cfgs if c["rtt"] is not None)
+# liveness is a RANKING signal, not a hard filter: some servers block datacenter probes
+# yet work fine on mobile, so we keep all but float reachable+fast ones to the top (proxy-1).
+print(f"Liveness: {alive}/{len(all_cfgs)} reachable from here (used for ranking, not dropping)")
 print(f"  white-list SNI: {sum(c['wl'] for c in all_cfgs)} | ordinary SNI: {sum(not c['wl'] for c in all_cfgs)}")
 
 def pick(cands, n, prefer_yandex=False):
@@ -133,6 +155,7 @@ def pick(cands, n, prefer_yandex=False):
         if e["flow"].startswith("xtls-rprx-vision"): s += 3
         if e["cc"]: s += 2
         if e["net"] == "tcp": s += 1
+        s += max(0, (500 - min(e.get("rtt") or 500, 500)) / 100)   # faster server = higher score (up to +5)
         return s
     cands = sorted(cands, key=lambda e: -sc(e))
     by = defaultdict(list)
@@ -155,6 +178,12 @@ norm_pool = [c for c in all_cfgs if not c["wl"]]                             # o
 WL   = pick(wl_pool, 100, prefer_yandex=True)
 NORM = pick(norm_pool, 100)                                                  # 100 ordinary servers
 ALL  = WL + NORM                                                             # all-in-one: white + normal (200)
+# PREMIUM: 20 fastest live US + 20 fastest live Canada
+def fastest(cc, n):
+    c = sorted((e for e in all_cfgs if e["cc"] == cc), key=lambda e: (e.get("rtt") is None, e.get("rtt") or 9999))
+    return c[:n]
+PREM = fastest("US", 20) + fastest("CA", 20)
+print(f"Premium: US={sum(1 for e in PREM if e['cc']=='US')} CA={sum(1 for e in PREM if e['cc']=='CA')}")
 
 # ---- builders ----
 RU_DIRECT = ["domain:ru","domain:xn--p1ai","geosite:category-ru","domain:yandex","domain:vk.com",
@@ -177,6 +206,7 @@ def outbound(e, i):
         "streamSettings": ss, "tag": f"proxy-{i+1}"}
 
 def build_json(cfgs, remarks, path):
+    cfgs = sorted(cfgs, key=lambda e: (e.get("rtt") is None, e.get("rtt") or 9999))   # fastest first => proxy-1 is best fallback
     proxies = [outbound(e,i) for i,e in enumerate(cfgs)]
     cfg = {
         "dns": {"servers": ["https://8.8.8.8/dns-query","https://8.8.4.4/dns-query"], "queryStrategy":"UseIP"},
@@ -216,9 +246,10 @@ def build_sub(cfgs, title, path):
         base64.b64encode(("\n".join(lines)+"\n").encode()).decode()+"\n")
 
 for cfgs, remarks, jpath, tpath in [
-    (WL,   "ROOT VPN | Белые списки",        "root-vpn.json",        "root-vpn.txt"),
-    (NORM, "ROOT VPN | Обычные",             "root-vpn-normal.json", "root-vpn-normal.txt"),
-    (ALL,  "ROOT VPN | Всё (Белые+Обычные)", "root-vpn-all.json",    "root-vpn-all.txt"),
+    (WL,   "ROOT VPN | Белые списки",        "root-vpn.json",         "root-vpn.txt"),
+    (NORM, "ROOT VPN | Обычные",             "root-vpn-normal.json",  "root-vpn-normal.txt"),
+    (PREM, "ROOT VPN | Премиум (US+CA)",     "root-vpn-premium.json", "root-vpn-premium.txt"),
+    (ALL,  "ROOT VPN | Всё (Белые+Обычные)", "root-vpn-all.json",     "root-vpn-all.txt"),
 ]:
     n = build_json(cfgs, remarks, jpath)
     build_sub(cfgs, remarks, tpath)
