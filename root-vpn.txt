@@ -1,8 +1,7 @@
-# profile-title: 🟡 ЯНДЕКС AUTO | 100 VLESS Reality | best-ping
-# profile-update-interval: 6
-# Date/Time: 2026-06-27 / 05:42 (UTC)
+# profile-title: ROOT VPN
+# profile-update-interval: 12
 # Count: 100
-# All non-RU servers, SNI=yandex. Enable URL-test/auto in your client to pick the fastest.
+# Stable mode: pick fastest on connect, hold for the whole session.
 vless://aa5b231c-4e18-4ae6-b83c-a293f51c0dfa@154.222.9.52:8443?flow=xtls-rprx-vision&fp=firefox&pbk=ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo&security=reality&sid=8d3293f0066e129a&sni=storage.yandex.net&type=tcp#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%E2%9A%AA%D0%AF-1
 vless://7f89560c-b9f0-4c56-b3e0-1b1bdafe0b08@45.195.137.100:8443?security=reality&encryption=none&pbk=IdqrygjwHBEMCOamBl7a504TVk6uMAtTRj0xLWcFcxY&headerType=none&fp=firefox&type=tcp&flow=xtls-rprx-vision&sni=storage.yandex.net&sid=e3d38cee79d4f94c#%F0%9F%87%A8%F0%9F%87%AD%20Switzerland%20%E2%9A%AA%D0%AF-1
 vless://7f89560c-b9f0-4c56-b3e0-1b1bdafe0b08@45.195.137.101:8443?type=tcp&security=reality&fp=firefox&sni=storage.yandex.net&flow=xtls-rprx-vision&pbk=IdqrygjwHBEMCOamBl7a504TVk6uMAtTRj0xLWcFcxY&sid=e3d38cee79d4f94c#%F0%9F%87%A8%F0%9F%87%AD%20Switzerland%20%E2%9A%AA%D0%AF-2

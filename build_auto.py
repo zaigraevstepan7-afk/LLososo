@@ -68,11 +68,11 @@ for e in cfgs:
     label = f"{flag(e['cc'])} {name} ⚪Я-{cnt[e['cc']]}"
     sub.append(e["uri"].split("#",1)[0] + "#" + up.quote(label))
 date = datetime.datetime.utcnow().strftime("%Y-%m-%d / %H:%M (UTC)")
-hdr = ["# profile-title: 🟡 ЯНДЕКС AUTO | 100 VLESS Reality | best-ping",
+hdr = ["# profile-title: ROOT VPN",
  "# profile-update-interval: 6", f"# Date/Time: {date}", f"# Count: {len(sub)}",
  "# All non-RU servers, SNI=yandex. Enable URL-test/auto in your client to pick the fastest.",""]
-open("Yandex-AUTO-100.txt","w").write("\n".join(hdr)+"\n".join(sub)+"\n")
-open("Yandex-AUTO-100-base64.txt","w").write(base64.b64encode(("\n".join(sub)+"\n").encode()).decode()+"\n")
+open("root-vpn.txt","w").write("\n".join(hdr)+"\n".join(sub)+"\n")
+open("root-vpn-base64.txt","w").write(base64.b64encode(("\n".join(sub)+"\n").encode()).decode()+"\n")
 
 # ---------- 2) auto-balancer Xray JSON ----------
 RU_DIRECT = ["domain:ru","domain:xn--p1ai","geosite:category-ru","domain:yandex","domain:vk.com",
@@ -112,7 +112,7 @@ config = {
         {"protocol":"freedom","settings":{"domainStrategy":"UseIP"},"tag":"direct"},
         {"protocol":"blackhole","settings":{"response":{"type":"http"}},"tag":"block"},
     ],
-    "remarks": "🟡 ЯНДЕКС AUTO (100 серверов, авто-выбор лучшего) ☁️",
+    "remarks": "ROOT VPN",
     "routing": {
         "domainStrategy":"IPIfNonMatch","domainMatcher":"hybrid",
         "rules":[
@@ -123,12 +123,18 @@ config = {
         "balancers":[{"tag":"auto","selector":["proxy-"],
             "strategy":{"type":"leastPing"},"fallbackTag":"proxy-1"}],
     },
+    # STABLE MODE: probe once at connect, then freeze. Re-pick only on reconnect (core restart).
     "observatory": {
         "subjectSelector":["proxy-"],
         "probeURL":"https://www.gstatic.com/generate_204",
-        "probeInterval":"5m","enableConcurrency":True,
+        "probeInterval":"9000h","enableConcurrency":True,
     },
 }
-open("Yandex-AUTO-100.json","w").write(json.dumps(config, ensure_ascii=False, indent=2))
-print("Wrote Yandex-AUTO-100.json (outbounds:", len(proxies), ")")
-print("Wrote Yandex-AUTO-100.txt / -base64.txt")
+# mux off + keep-alive on every proxy => stable held connection, good for gaming
+for _o in config["outbounds"]:
+    if _o.get("protocol") == "vless":
+        _o["mux"] = {"enabled": False, "concurrency": -1}
+        _o["streamSettings"]["sockopt"] = {"tcpKeepAliveInterval":15,"tcpKeepAliveIdle":30,"tcpMptcp":False}
+open("root-vpn.json","w").write(json.dumps(config, ensure_ascii=False, indent=2))
+print("Wrote root-vpn.json (outbounds:", len(proxies), ")")
+print("Wrote root-vpn.txt / -base64.txt")

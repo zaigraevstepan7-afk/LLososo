@@ -42,8 +42,8 @@
   "outbounds": [
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -77,14 +77,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-1"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -118,14 +123,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-2"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -159,14 +169,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-3"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -200,14 +215,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-4"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -241,14 +261,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-5"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -282,14 +307,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-6"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -323,14 +353,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-7"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -364,14 +399,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-8"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -405,14 +445,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-9"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -446,14 +491,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-10"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -487,14 +537,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-11"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -528,14 +583,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-12"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -569,14 +629,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-13"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -610,14 +675,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-14"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -651,14 +721,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-15"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -692,14 +767,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-16"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -733,14 +813,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-17"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -774,14 +859,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-18"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -815,14 +905,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-19"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -856,14 +951,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-20"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -897,14 +997,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-21"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -938,14 +1043,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-22"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -979,14 +1089,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-23"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1020,14 +1135,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-24"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1061,14 +1181,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-25"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1102,14 +1227,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-26"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1143,14 +1273,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-27"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1184,14 +1319,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-28"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1225,14 +1365,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-29"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1266,14 +1411,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-30"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1307,14 +1457,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-31"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1348,14 +1503,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-32"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1389,14 +1549,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-33"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1430,14 +1595,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-34"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1471,14 +1641,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-35"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1512,14 +1687,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-36"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1553,14 +1733,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-37"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1594,14 +1779,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-38"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1635,14 +1825,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-39"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1676,14 +1871,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-40"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1717,14 +1917,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-41"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1758,14 +1963,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-42"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1799,14 +2009,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-43"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1840,14 +2055,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-44"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1881,14 +2101,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-45"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1922,14 +2147,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-46"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -1963,14 +2193,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-47"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2004,14 +2239,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-48"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2045,14 +2285,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-49"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2086,14 +2331,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-50"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2127,14 +2377,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-51"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2168,14 +2423,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-52"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2209,14 +2469,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-53"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2250,14 +2515,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-54"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2291,14 +2561,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-55"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2332,14 +2607,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-56"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2373,14 +2653,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-57"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2414,14 +2699,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-58"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2455,14 +2745,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-59"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2496,14 +2791,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-60"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2537,14 +2837,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-61"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2578,14 +2883,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-62"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2619,14 +2929,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-63"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2660,14 +2975,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-64"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2701,14 +3021,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-65"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2742,14 +3067,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-66"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2783,14 +3113,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-67"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2824,14 +3159,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-68"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2865,14 +3205,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-69"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2906,14 +3251,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-70"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2947,14 +3297,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-71"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -2988,14 +3343,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-72"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3029,14 +3389,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-73"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3070,14 +3435,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-74"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3111,14 +3481,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-75"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3152,14 +3527,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-76"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3193,14 +3573,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-77"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3234,14 +3619,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-78"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3275,14 +3665,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-79"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3316,14 +3711,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-80"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3357,14 +3757,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-81"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3398,14 +3803,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-82"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3439,14 +3849,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-83"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3480,14 +3895,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-84"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3521,14 +3941,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-85"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3562,14 +3987,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-86"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3603,14 +4033,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-87"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3644,14 +4079,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-88"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3685,14 +4125,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-89"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3726,14 +4171,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-90"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3767,14 +4217,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-91"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3808,14 +4263,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-92"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3849,14 +4309,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-93"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3890,14 +4355,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-94"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3931,14 +4401,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-95"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -3972,14 +4447,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-96"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -4013,14 +4493,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-97"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -4054,14 +4539,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-98"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -4095,14 +4585,19 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-99"
     },
     {
       "mux": {
-        "concurrency": -1,
-        "enabled": false
+        "enabled": false,
+        "concurrency": -1
       },
       "protocol": "vless",
       "settings": {
@@ -4136,6 +4631,11 @@
           "header": {
             "type": "none"
           }
+        },
+        "sockopt": {
+          "tcpKeepAliveInterval": 15,
+          "tcpKeepAliveIdle": 30,
+          "tcpMptcp": false
         }
       },
       "tag": "proxy-100"
@@ -4157,7 +4657,7 @@
       "tag": "block"
     }
   ],
-  "remarks": "🟡 ЯНДЕКС AUTO (100 серверов, авто-выбор лучшего) ☁️",
+  "remarks": "ROOT VPN",
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "domainMatcher": "hybrid",
@@ -4221,7 +4721,7 @@
       "proxy-"
     ],
     "probeURL": "https://www.gstatic.com/generate_204",
-    "probeInterval": "5m",
+    "probeInterval": "9000h",
     "enableConcurrency": true
   }
 }
