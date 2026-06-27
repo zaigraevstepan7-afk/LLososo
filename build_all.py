@@ -80,7 +80,44 @@ for f in glob.glob("srcs/*.raw"):
                          "flow":par.get("flow",""),"pbk":pbk,"sid":clean_sid(par.get("sid","")),
                          "fp":par.get("fp","chrome"),"sname":par.get("serviceName",""),"wl":is_wl(sni)})
 
-print(f"Total reality servers (non-RU, tcp/grpc): {len(all_cfgs)}")
+print(f"Total reality servers (flag-filtered): {len(all_cfgs)}")
+
+# ---- REAL geo-IP pass: resolve hosts, drop servers whose actual IP is in Russia ----
+import socket, urllib.request, time
+socket.setdefaulttimeout(3)
+def is_ip(a): return re.match(r'^[0-9.]+$', a)
+addrs = {c["addr"] for c in all_cfgs}
+ip_of = {}
+for a in addrs:
+    if is_ip(a): ip_of[a] = a
+    else:
+        try: ip_of[a] = socket.gethostbyname(a)
+        except Exception: ip_of[a] = None
+ips = sorted({ip for ip in ip_of.values() if ip})
+geo = {}
+for i in range(0, len(ips), 100):
+    chunk = ips[i:i+100]
+    body = json.dumps([{"query": ip, "fields": "query,countryCode"} for ip in chunk]).encode()
+    req = urllib.request.Request("http://ip-api.com/batch", data=body, headers={"Content-Type": "application/json"})
+    try:
+        for r in json.load(urllib.request.urlopen(req, timeout=30)):
+            geo[r.get("query")] = r.get("countryCode")
+    except Exception as e:
+        print("geoip batch error:", e)
+    time.sleep(1.5)
+
+ISO2NAME = dict(CC)
+kept = []
+dropped_ru = 0
+for c in all_cfgs:
+    real = geo.get(ip_of.get(c["addr"]))
+    if real == "RU":                       # actual server is in Russia -> exclude
+        dropped_ru += 1; continue
+    if real and real not in SKIP:          # trust real geo for label when known
+        c["cc"] = real
+    kept.append(c)
+all_cfgs = kept
+print(f"GeoIP: dropped {dropped_ru} RU-located servers | remaining: {len(all_cfgs)}")
 print(f"  white-list SNI: {sum(c['wl'] for c in all_cfgs)} | ordinary SNI: {sum(not c['wl'] for c in all_cfgs)}")
 
 def pick(cands, n, prefer_yandex=False):
