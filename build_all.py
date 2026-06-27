@@ -40,6 +40,20 @@ def parse(u):
     q = rest.split("?",1)[1] if "?" in rest else ""
     return uid, host, dict(up.parse_qsl(q)), frag
 
+# ---- field validators: drop/clean configs polluted by ad-text in sources ----
+RE_UUID = re.compile(r"^[0-9a-fA-F]{8}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{4}-?[0-9a-fA-F]{12}$")
+RE_PBK  = re.compile(r"^[A-Za-z0-9_-]{43}$")           # x25519 public key, base64url, 43 chars
+RE_DOM  = re.compile(r"^[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$")  # plain domain SNI
+RE_HEX  = re.compile(r"[0-9a-fA-F]+")
+def clean_sid(sid):
+    m = RE_HEX.match(sid or "")                       # keep only leading hex run
+    h = m.group(0) if m else ""
+    h = h[:16]                                         # reality shortId <= 16 hex chars
+    if len(h) % 2: h = h[:-1]                          # must be even length
+    return h
+def valid(uid, pbk, sni):
+    return RE_UUID.match(uid or "") and RE_PBK.match(pbk or "") and RE_DOM.match(sni or "")
+
 # ---- collect all reality servers (tcp/grpc), non-RU ----
 all_cfgs, seen = [], set()
 for f in glob.glob("srcs/*.raw"):
@@ -53,16 +67,17 @@ for f in glob.glob("srcs/*.raw"):
         if net not in ("tcp","grpc"): continue
         sni = par.get("sni") or par.get("serverName","")
         pbk = par.get("pbk","")
-        if not sni or not pbk: continue
+        if not valid(uid, pbk, sni): continue          # skip configs with junk/ad-polluted fields
         cc = f2cc(frag)
         if cc in SKIP: continue
         addr, _, port = host.rpartition(":")
-        if not port.isdigit(): continue
+        if not port.isdigit() or not (0 < int(port) < 65536): continue
+        if not RE_DOM.match(addr) and not re.match(r"^[0-9.]+$", addr): continue  # host must be domain or IP
         key = (addr, port, pbk)
         if key in seen: continue
         seen.add(key)
         all_cfgs.append({"uri":u,"uid":uid,"addr":addr,"port":int(port),"net":net,"sni":sni,"cc":cc,
-                         "flow":par.get("flow",""),"pbk":pbk,"sid":par.get("sid",""),
+                         "flow":par.get("flow",""),"pbk":pbk,"sid":clean_sid(par.get("sid","")),
                          "fp":par.get("fp","chrome"),"sname":par.get("serviceName",""),"wl":is_wl(sni)})
 
 print(f"Total reality servers (non-RU, tcp/grpc): {len(all_cfgs)}")
