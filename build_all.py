@@ -96,7 +96,7 @@ wl_pool   = [c for c in all_cfgs if "yandex" in c["sni"].lower()]            # w
 norm_pool = [c for c in all_cfgs if not c["wl"]]                             # ordinary, non-whitelist SNI
 
 WL   = pick(wl_pool, 100, prefer_yandex=True)
-NORM = pick(norm_pool, 100)
+NORM = pick(norm_pool, len(norm_pool))                                       # ALL ordinary servers (huge)
 COMB = pick(WL, 50, prefer_yandex=True) + pick(NORM, 50)                     # 50 + 50 = both
 
 # ---- builders ----
